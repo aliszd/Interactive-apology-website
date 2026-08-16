@@ -7,22 +7,22 @@ import img5 from "../assets/images/img5.jpg";
 export const story = [
   {
     image: img1,
-    text: "Hiiii Goluuuu, Just wanted to tell you somethingggg...",
+    text: "ملینا، یه چیزی هست که می‌خوام بهت بگم.\n\nفقط چند دقیقه وقتت رو می‌خوام.",
   },
   {
     image: img2,
-    text: "Do you remember this picture? Our first picture that you took ✨",
+    text: "شاید همیشه نفهمم دقیقاً کِی ناراحتت کردم.\n\nشاید بعضی وقت‌ها بدون اینکه بخوام، با حرف یا رفتارم اذیتت کردم.\n\nاگر ناراحتت کردم، واقعاً متأسفم.",
   },
   {
     image: img3,
-    text: "Our first trip as a hackathon... 🥺",
+    text: "چندین ساله که توی زندگی منی.\n\nاز یه چت ناشناس شروع شد و یه جوری تبدیل شد به یکی از آدم‌هایی که بودنش برام مهمه.\n\nهنوزم فکر می‌کنم یکی از قشنگ‌ترین چیزها درباره‌ت هوش، زیبایی و درک بالاته.",
   },
   {
     image: img4,
-    text: "A day full of enjoyymenttt 😌",
+    text: "و البته نمی‌شه درباره ما حرف زد و از گابلمه حرف نزد.\n\nاز اون کلمه ترکی که یه جوری تبدیل شد به یکی از خاطرات ما.\n\nو ادای همدیگه رو درآوردن که هنوز نمی‌دونم کدوممون مسخره‌تر بود.",
   },
   {
     image: img5,
-    text: "Yeah, sometimes I do things that make you angry, and I am sorry for that. But just like this image, I choose US. So maaf kar de goluu ❤️",
+    text: "شاید همیشه بلد نباشم چیزی که توی دلمه رو درست نشون بدم.\n\nتو برام مهمی و دلم می‌خواد خوشحالت کنم، حتی اگر همیشه نتونم درست ابرازش کنم.\n\nقول می‌دم سعی کنم بهتر باشم، بیشتر بفهممت و کمتر اذیتت کنم.",
   },
 ];
