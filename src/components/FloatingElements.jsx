@@ -1,22 +1,24 @@
 const FloatingElements = () => {
+  const particles = Array.from({ length: 22 });
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 18 }).map((_, i) => {
-        const left = Math.random() * 100;
-        const delay = Math.random() * 10;
-        const size = Math.random() * 16 + 10;
-        const duration = Math.random() * 10 + 15;
+    <div className="particle-field" aria-hidden="true">
+      {particles.map((_, i) => {
+        const left = (i * 37.7) % 100;
+        const size = 2 + ((i * 13) % 5);
+        const delay = (i * 1.7) % 12;
+        const duration = 12 + ((i * 2.3) % 10);
 
         return (
           <span
             key={i}
-            className="floating-element absolute bottom-[-40px] rounded-full bg-white/50 blur-[1px]"
+            className="particle"
             style={{
               left: `${left}%`,
-              animationDelay: `${delay}s`,
-              animationDuration: `${duration}s`,
               width: `${size}px`,
               height: `${size}px`,
+              animationDelay: `${delay}s`,
+              animationDuration: `${duration}s`,
             }}
           />
         );
