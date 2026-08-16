@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+  font-family: "Vazirmatn", Tahoma, "Segoe UI", sans-serif;
   color: #f8eef2;
   background: #120c12;
   font-synthesis: none;
@@ -24,6 +26,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: #120c12;
+  font-family: "Vazirmatn", Tahoma, "Segoe UI", sans-serif;
 }
 
 button {
@@ -106,13 +109,14 @@ button {
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   color: #f7dce7;
 }
 
 .site-nav p {
   margin: 0;
   font-size: 0.82rem;
+  font-weight: 400;
   color: #cdb4c5;
 }
 
@@ -164,8 +168,8 @@ button {
   margin: 0 0 18px;
   color: #d89ab4;
   font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .story-mark,
@@ -188,9 +192,10 @@ button {
   margin: 0 auto 34px;
   max-width: 590px;
   color: #eee0e7;
-  font-size: clamp(1.2rem, 2.3vw, 1.55rem);
+  font-size: clamp(1.18rem, 2.3vw, 1.5rem);
   font-weight: 500;
   line-height: 2.15;
+  letter-spacing: -0.01em;
   white-space: pre-line;
 }
 
@@ -271,6 +276,7 @@ button {
   font-size: clamp(1.75rem, 4vw, 2.6rem);
   line-height: 1.6;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .question-subtitle {
