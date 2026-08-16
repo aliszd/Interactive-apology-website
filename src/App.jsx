@@ -18,14 +18,11 @@ function App() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-
     audio.volume = 0.35;
-
     const handleEnded = () => {
       audio.currentTime = 0;
       audio.play().catch(() => setMusicPlaying(false));
     };
-
     audio.addEventListener("ended", handleEnded);
     return () => audio.removeEventListener("ended", handleEnded);
   }, []);
@@ -33,7 +30,6 @@ function App() {
   const startMusic = async () => {
     const audio = audioRef.current;
     if (!audio || musicPlaying) return;
-
     try {
       await audio.play();
       setMusicPlaying(true);
@@ -45,7 +41,6 @@ function App() {
   const toggleMusic = async () => {
     const audio = audioRef.current;
     if (!audio) return;
-
     if (audio.paused) {
       try {
         await audio.play();
@@ -63,11 +58,11 @@ function App() {
     setCurrent(0);
     setShowQuestion(false);
     setShowFinal(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleNext = () => {
     startMusic();
-
     if (current === story.length - 1) {
       setShowQuestion(true);
     } else {
@@ -76,10 +71,9 @@ function App() {
   };
 
   return (
-    <div
-      dir="rtl"
-      className="min-h-screen flex flex-col bg-gradient-to-br from-pink-200 via-purple-200 to-pink-300 relative overflow-hidden"
-    >
+    <div dir="rtl" className="app-shell">
+      <div className="background-grid" aria-hidden="true" />
+      <div className="background-noise" aria-hidden="true" />
       <audio ref={audioRef} src={MUSIC_SRC} preload="auto" />
 
       <FloatingElements />
@@ -88,24 +82,23 @@ function App() {
       <button
         onClick={toggleMusic}
         aria-label={musicPlaying ? "توقف موسیقی" : "پخش موسیقی"}
-        className="fixed bottom-5 left-5 z-50 px-5 py-3 bg-white/80 backdrop-blur-md text-gray-700 rounded-full shadow-lg text-sm md:text-base hover:scale-105 transition-transform duration-300"
+        className="music-control"
       >
-        {musicPlaying ? "توقف موسیقی" : "پخش موسیقی"}
+        <span className={`music-dot ${musicPlaying ? "is-playing" : ""}`} />
+        <span>{musicPlaying ? "موسیقی روشن" : "پخش موسیقی"}</span>
       </button>
 
       {!showQuestion && !showFinal && (
-        <Frame
-          image={story[current].image}
-          text={story[current].text}
-          onNext={handleNext}
-        />
+        <Frame text={story[current].text} onNext={handleNext} />
       )}
 
       {showQuestion && !showFinal && (
-        <Question onYes={() => {
-          startMusic();
-          setShowFinal(true);
-        }} />
+        <Question
+          onYes={() => {
+            startMusic();
+            setShowFinal(true);
+          }}
+        />
       )}
 
       {showFinal && <FinalScreen onReplay={replay} />}
