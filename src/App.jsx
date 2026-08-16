@@ -18,18 +18,43 @@ function App() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
     audio.volume = 0.35;
-    const handleEnded = () => {
-      audio.currentTime = 0;
-      audio.play().catch(() => setMusicPlaying(false));
+    audio.loop = true;
+
+    const tryAutoplay = async () => {
+      try {
+        await audio.play();
+        setMusicPlaying(true);
+      } catch {
+        // Browsers may block autoplay with sound. The first tap/click below starts it.
+      }
     };
-    audio.addEventListener("ended", handleEnded);
-    return () => audio.removeEventListener("ended", handleEnded);
+
+    const startOnFirstInteraction = () => {
+      if (audio.paused) {
+        audio.play().then(() => setMusicPlaying(true)).catch(() => {});
+      }
+      window.removeEventListener("pointerdown", startOnFirstInteraction);
+      window.removeEventListener("keydown", startOnFirstInteraction);
+      window.removeEventListener("touchstart", startOnFirstInteraction);
+    };
+
+    tryAutoplay();
+    window.addEventListener("pointerdown", startOnFirstInteraction, { once: true });
+    window.addEventListener("keydown", startOnFirstInteraction, { once: true });
+    window.addEventListener("touchstart", startOnFirstInteraction, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener("pointerdown", startOnFirstInteraction);
+      window.removeEventListener("keydown", startOnFirstInteraction);
+      window.removeEventListener("touchstart", startOnFirstInteraction);
+    };
   }, []);
 
   const startMusic = async () => {
     const audio = audioRef.current;
-    if (!audio || musicPlaying) return;
+    if (!audio || !audio.paused) return;
     try {
       await audio.play();
       setMusicPlaying(true);
@@ -58,6 +83,7 @@ function App() {
     setCurrent(0);
     setShowQuestion(false);
     setShowFinal(false);
+    startMusic();
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
